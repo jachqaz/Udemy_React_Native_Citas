@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const App: () => React$Node = () => {
+const App = () => {
+
+  const [citas, setCitas] = useState([
+    { id: "1", paciente: "Paciente1", propietario: "propiestario1", sintomas: "sintomas1" },
+    { id: "2", paciente: "Paciente2", propietario: "propiestario2", sintomas: "sintomas2" },
+    { id: "3", paciente: "Paciente3", propietario: "propiestario3", sintomas: "sintomas3" },
+  ]);
+
   return (
     <View style={styles.contenedor}>
       <Text style={styles.titulo}>Administrador de Citas</Text>
+      {citas.map(cita => (
+        <View>
+          <Text>{cita.paciente}</Text>
+        </View>
+      ))}
     </View>
   );
 };
