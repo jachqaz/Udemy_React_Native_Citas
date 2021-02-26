@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
 const App = () => {
 
@@ -12,11 +12,16 @@ const App = () => {
   return (
     <View style={styles.contenedor}>
       <Text style={styles.titulo}>Administrador de Citas</Text>
-      {citas.map(cita => (
+      <FlatList data={citas} renderItem={(cita) => (
         <View>
           <Text>{cita.paciente}</Text>
         </View>
-      ))}
+      )} keyExtractor={cita => cita.id} />
+      {/*{citas.map(cita => (*/}
+      {/*  <View>*/}
+      {/*    <Text>{cita.paciente}</Text>*/}
+      {/*  </View>*/}
+      {/*))}*/}
     </View>
   );
 };
