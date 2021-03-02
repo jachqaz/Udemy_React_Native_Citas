@@ -6,8 +6,36 @@ const Formulario = () => {
     <>
       <View style={styles.formulario}>
         <View>
-          <Text style={styles.label}>Paciente;</Text>
-          <TextInput style={styles.input} />
+          <Text style={styles.label}>Paciente:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => console.log(texto)}
+          />
+        </View>
+
+        <View>
+          <Text style={styles.label}>Dueño:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => console.log(texto)}
+          />
+        </View>
+
+        <View>
+          <Text style={styles.label}>Telefono Contacto:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => console.log(texto)}
+          />
+        </View>
+
+        <View>
+          <Text style={styles.label}>Sintomas:</Text>
+          <TextInput
+            multiline
+            style={styles.input}
+            onChangeText={(texto) => console.log(texto)}
+          />
         </View>
       </View>
     </>
