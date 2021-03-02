@@ -59,6 +59,7 @@ const Formulario = () => {
         </View>
 
         <View>
+          <Text style={styles.label}>Fecha:</Text>
           <Button title="Seleccionar Fecha" onPress={showDatePicker} />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
@@ -70,6 +71,7 @@ const Formulario = () => {
         </View>
 
         <View>
+          <Text style={styles.label}>Hora:</Text>
           <Button title="Seleccionar Hora" onPress={showTimePicker} />
           <DateTimePickerModal
             isVisible={isTimePickerVisible}
