@@ -65,6 +65,7 @@ const Formulario = () => {
             mode="date"
             onConfirm={confirmarFecha}
             onCancel={hideDatePicker}
+            locale="es_Es"
           />
         </View>
 
@@ -75,6 +76,8 @@ const Formulario = () => {
             mode="time"
             onConfirm={confirmarHora}
             onCancel={hideTimePicker}
+            locale="es_Es"
+            is24Hour
           />
         </View>
 
