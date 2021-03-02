@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Formulario = () => {
@@ -31,73 +31,78 @@ const Formulario = () => {
     hideDatePicker();
   };
 
-  const confirmarHora = (date) => {
-    console.warn("A date has been picked: ", date);
+  const confirmarHora = (hour) => {
+    const opciones = { hour: "numeric", minute: "2-digit" };
+    guardarHora(hour.toLocaleString("en-US", opciones));
     hideTimePicker();
   };
   return (
     <>
-      <View style={styles.formulario}>
-        <View>
-          <Text style={styles.label}>Paciente:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(texto) => console.log(texto)}
-          />
-        </View>
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.formulario}>
+            <View>
+              <Text style={styles.label}>Paciente:</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(texto) => console.log(texto)}
+              />
+            </View>
 
-        <View>
-          <Text style={styles.label}>Dueño:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(texto) => console.log(texto)}
-          />
-        </View>
+            <View>
+              <Text style={styles.label}>Dueño:</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(texto) => console.log(texto)}
+              />
+            </View>
 
-        <View>
-          <Text style={styles.label}>Telefono Contacto:</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(texto) => console.log(texto)}
-          />
-        </View>
+            <View>
+              <Text style={styles.label}>Telefono Contacto:</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={(texto) => console.log(texto)}
+              />
+            </View>
 
-        <View>
-          <Text style={styles.label}>Fecha:</Text>
-          <Button title="Seleccionar Fecha" onPress={showDatePicker} />
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={confirmarFecha}
-            onCancel={hideDatePicker}
-            locale="es_Es"
-          />
-          <Text>{fecha}</Text>
-        </View>
+            <View>
+              <Text style={styles.label}>Fecha:</Text>
+              <Button title="Seleccionar Fecha" onPress={showDatePicker} />
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                onConfirm={confirmarFecha}
+                onCancel={hideDatePicker}
+                locale="es_Es"
+              />
+              <Text>{fecha}</Text>
+            </View>
 
-        <View>
-          <Text style={styles.label}>Hora:</Text>
-          <Button title="Seleccionar Hora" onPress={showTimePicker} />
-          <DateTimePickerModal
-            isVisible={isTimePickerVisible}
-            mode="time"
-            onConfirm={confirmarHora}
-            onCancel={hideTimePicker}
-            locale="es_Es"
-            is24Hour
-          />
-          <Text>{hora}</Text>
-        </View>
+            <View>
+              <Text style={styles.label}>Hora:</Text>
+              <Button title="Seleccionar Hora" onPress={showTimePicker} />
+              <DateTimePickerModal
+                isVisible={isTimePickerVisible}
+                mode="time"
+                onConfirm={confirmarHora}
+                onCancel={hideTimePicker}
+                locale="es_Es"
+                is24Hour
+              />
+              <Text>{hora}</Text>
+            </View>
 
-        <View>
-          <Text style={styles.label}>Sintomas:</Text>
-          <TextInput
-            multiline
-            style={styles.input}
-            onChangeText={(texto) => console.log(texto)}
-          />
-        </View>
-      </View>
+            <View>
+              <Text style={styles.label}>Sintomas:</Text>
+              <TextInput
+                multiline
+                style={styles.input}
+                onChangeText={(texto) => console.log(texto)}
+              />
+            </View>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 };
