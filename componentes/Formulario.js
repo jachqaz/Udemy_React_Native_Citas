@@ -3,6 +3,9 @@ import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Formulario = () => {
+  const [fecha, guardarFecha] = useState("");
+  const [hora, guardarHora] = useState("");
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
@@ -23,7 +26,8 @@ const Formulario = () => {
   };
 
   const confirmarFecha = (date) => {
-    console.warn("A date has been picked: ", date);
+    const opciones = { year: "numeric", month: "long", day: "2-digit" };
+    guardarFecha(date.toLocaleDateString("es-ES", opciones));
     hideDatePicker();
   };
 
@@ -68,6 +72,7 @@ const Formulario = () => {
             onCancel={hideDatePicker}
             locale="es_Es"
           />
+          <Text>{fecha}</Text>
         </View>
 
         <View>
@@ -81,6 +86,7 @@ const Formulario = () => {
             locale="es_Es"
             is24Hour
           />
+          <Text>{hora}</Text>
         </View>
 
         <View>
