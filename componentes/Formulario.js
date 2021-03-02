@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Button, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Formulario = () => {
+  const [paciente, guardarPaciente] = useState("");
+  const [propietario, guardarPropietario] = useState("");
+  const [telefono, guardarTelefono] = useState("");
+  const [sintomas, guardarSintomas] = useState("");
   const [fecha, guardarFecha] = useState("");
   const [hora, guardarHora] = useState("");
 
@@ -36,73 +40,82 @@ const Formulario = () => {
     guardarHora(hour.toLocaleString("en-US", opciones));
     hideTimePicker();
   };
+
+  const crearNuevaCita = () => {
+    console.log("Desde CrearNuevaCita");
+  };
+
   return (
     <>
-      <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          <View style={styles.formulario}>
-            <View>
-              <Text style={styles.label}>Paciente:</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={(texto) => console.log(texto)}
-              />
-            </View>
+      <View style={styles.formulario}>
+        <View>
+          <Text style={styles.label}>Paciente:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => guardarPaciente(texto)}
+          />
+        </View>
 
-            <View>
-              <Text style={styles.label}>Dueño:</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={(texto) => console.log(texto)}
-              />
-            </View>
+        <View>
+          <Text style={styles.label}>Dueño:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => guardarPropietario(texto)}
+          />
+        </View>
 
-            <View>
-              <Text style={styles.label}>Telefono Contacto:</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={(texto) => console.log(texto)}
-              />
-            </View>
+        <View>
+          <Text style={styles.label}>Telefono Contacto:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(texto) => guardarTelefono(texto)}
+          />
+        </View>
 
-            <View>
-              <Text style={styles.label}>Fecha:</Text>
-              <Button title="Seleccionar Fecha" onPress={showDatePicker} />
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={confirmarFecha}
-                onCancel={hideDatePicker}
-                locale="es_Es"
-              />
-              <Text>{fecha}</Text>
-            </View>
+        <View>
+          <Text style={styles.label}>Fecha:</Text>
+          <Button title="Seleccionar Fecha" onPress={showDatePicker} />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="date"
+            onConfirm={confirmarFecha}
+            onCancel={hideDatePicker}
+            locale="es_Es"
+          />
+          <Text>{fecha}</Text>
+        </View>
 
-            <View>
-              <Text style={styles.label}>Hora:</Text>
-              <Button title="Seleccionar Hora" onPress={showTimePicker} />
-              <DateTimePickerModal
-                isVisible={isTimePickerVisible}
-                mode="time"
-                onConfirm={confirmarHora}
-                onCancel={hideTimePicker}
-                locale="es_Es"
-                is24Hour
-              />
-              <Text>{hora}</Text>
-            </View>
+        <View>
+          <Text style={styles.label}>Hora:</Text>
+          <Button title="Seleccionar Hora" onPress={showTimePicker} />
+          <DateTimePickerModal
+            isVisible={isTimePickerVisible}
+            mode="time"
+            onConfirm={confirmarHora}
+            onCancel={hideTimePicker}
+            locale="es_Es"
+            is24Hour
+          />
+          <Text>{hora}</Text>
+        </View>
 
-            <View>
-              <Text style={styles.label}>Sintomas:</Text>
-              <TextInput
-                multiline
-                style={styles.input}
-                onChangeText={(texto) => console.log(texto)}
-              />
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+        <View>
+          <Text style={styles.label}>Sintomas:</Text>
+          <TextInput
+            multiline
+            style={styles.input}
+            onChangeText={(texto) => guardarSintomas(texto)}
+          />
+        </View>
+
+        <View>
+          <TouchableHighlight
+            onPress={() => crearNuevaCita()}
+            style={styles.btnSubmit}>
+            <Text style={styles.textoSubmit}>Crear Nueva Cita</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
     </>
   );
 };
@@ -125,6 +138,16 @@ const styles = StyleSheet.create({
     borderColor: "#e1e1e1",
     borderWidth: 1,
     borderStyle: "solid",
+  },
+  btnSubmit: {
+    padding: 10,
+    backgroundColor: "#7d024e",
+    marginVertical: 10,
+  },
+  textoSubmit: {
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 export default Formulario;
