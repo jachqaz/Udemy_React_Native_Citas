@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
+import { Alert, Button, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const Formulario = () => {
@@ -42,7 +42,24 @@ const Formulario = () => {
   };
 
   const crearNuevaCita = () => {
-    console.log("Desde CrearNuevaCita");
+    if (
+      paciente.trim() === "" ||
+      propietario.trim() === "" ||
+      telefono.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === ""
+    ) {
+      //Falla la validacion
+      console.log("Algo Fallo");
+      mostrarAlerta();
+
+    }
+  };
+
+  //Mostrar la alerta si falla la validacion
+  const mostrarAlerta = () => {
+    Alert.alert("Error", "Todos los campos son obligatorios", [{ text: "OK" }]);
   };
 
   return (
