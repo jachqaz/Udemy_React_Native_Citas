@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FlatList, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import Cita from "./componentes/Cita";
 import Formulario from "./componentes/Formulario";
 
@@ -34,28 +34,21 @@ const App = () => {
 
   return (
     <View style={styles.contenedor}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
-          <Text style={styles.titulo}>Administrador de Citas</Text>
-          <Formulario />
-          <Text style={styles.titulo}>
-            {citas.length > 0 ? "Administra tus citas" : "No hay citas, Agrega una"}
-          </Text>
-          <FlatList
-            data={citas}
-            renderItem={({ item }) => (
-              <Cita item={item} eliminarPaciente={eliminarPaciente} />
-            )}
-            keyExtractor={(cita) => cita.id}
-          />
-          {/*{citas.map(cita => (*/}
-          {/*  <View>*/}
-          {/*    <Text>{cita.paciente}</Text>*/}
-          {/*  </View>*/}
-          {/*))}*/}
-
-        </ScrollView>
-      </SafeAreaView>
+      <Text style={styles.titulo}>Administrador de Citas</Text>
+      <View style={styles.contenido}>
+        <Formulario />
+        <Text style={styles.titulo}>
+          {citas.length > 0 ? "Administra tus citas" : "No hay citas, Agrega una"}
+        </Text>
+        <FlatList
+          style={styles.listado}
+          data={citas}
+          renderItem={({ item }) => (
+            <Cita item={item} eliminarPaciente={eliminarPaciente} />
+          )}
+          keyExtractor={(cita) => cita.id}
+        />
+      </View>
     </View>
   );
 };
@@ -72,6 +65,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  contenido: {
+    flex: 1,
+    marginHorizontal: "2.5%",
+  },
+  listado: {
+    flex: 1,
   },
 });
 
