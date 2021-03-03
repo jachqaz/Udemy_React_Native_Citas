@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import shortid from "shortid";
 
-const Formulario = () => {
+const Formulario = ({ citas, setCitas, guardarMostrarForm }) => {
   const [paciente, guardarPaciente] = useState("");
   const [propietario, guardarPropietario] = useState("");
   const [telefono, guardarTelefono] = useState("");
@@ -53,8 +54,12 @@ const Formulario = () => {
       //Falla la validacion
       console.log("Algo Fallo");
       mostrarAlerta();
-
     }
+    const cita = { paciente, propietario, telefono, fecha, hora, sintomas };
+    cita.id = shortid.generate();
+    const citasNuevo = [...citas, cita];
+    setCitas(citasNuevo);
+    guardarMostrarForm(false);
   };
 
   //Mostrar la alerta si falla la validacion
